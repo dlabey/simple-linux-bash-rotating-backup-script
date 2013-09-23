@@ -49,29 +49,29 @@ tar -zcvf `dirname $0`/tmp/weekly/${DAY_OF_WEEK}_database.tar.gz `dirname $0`/${
 rm -rf `dirname $0`/${DAY_OF_WEEK}.sql
 echo 'Made weekly backup...'
 
-# Check If It Is The 182nd Or 364th Day Of The Year Then Make A Biannual Backup
+# Check If It Is The 1st or 182nd Day Of The Year Then Make A Biannual Backup
 # If It Is By Copying The Weekly Backup To The Biannual Folder For The Current
 # Year
-if [ $DAY_OF_YEAR -eq 182 -o $DAY_OF_YEAR -eq 364 ] ; then
-    if [ $DAY_OF_YEAR -eq 182 ] ; then
+if [ $DAY_OF_YEAR -eq 1 -o $DAY_OF_YEAR -eq 182 ] ; then
+    if [ $DAY_OF_YEAR -eq 1 ] ; then
         cp `dirname $0`/tmp/weekly/${DAY_OF_WEEK}_files.tar.gz `dirname $0`/tmp/${YEAR}/biannual/01_files.tar.gz
         cp `dirname $0`/tmp/weekly/${DAY_OF_WEEK}_database.tar.gz `dirname $0`/tmp/${YEAR}/biannual/01_database.tar.gz
     fi
-    if [ $DAY_OF_YEAR -eq 364 ] ; then
+    if [ $DAY_OF_YEAR -eq 182 ] ; then
         cp `dirname $0`/tmp/weekly/${DAY_OF_WEEK}_files.tar.gz `dirname $0`/tmp/${YEAR}/biannual/02_files.tar.gz
         cp `dirname $0`/tmp/weekly/${DAY_OF_WEEK}_database.tar.gz `dirname $0`/tmp/${YEAR}/biannual/02_database.tar.gz
     fi
     echo 'Made biannual backup...'
 fi
 
-# Check If It Is The 14th Or 28th Day Of The Month Then Make A Bimonthly Backup
+# Check If It Is The 1st Or 14th Day Of The Month Then Make A Bimonthly Backup
 # If It Is By Copying The Weekly Backup To The Folder For The Current Month
-if [ $DAY_OF_MONTH -eq 14 -o $DAY_OF_MONTH -eq 28 ] ; then
-    if [ $DAY_OF_MONTH -eq 14 ] ; then
+if [ $DAY_OF_MONTH -eq 1 -o $DAY_OF_MONTH -eq 14 ] ; then
+    if [ $DAY_OF_MONTH -eq 1 ] ; then
         cp `dirname $0`/tmp/weekly/${DAY_OF_WEEK}_files.tar.gz `dirname $0`/tmp/${YEAR}/${MONTH}/01_files.tar.gz
         cp `dirname $0`/tmp/weekly/${DAY_OF_WEEK}_database.tar.gz `dirname $0`/tmp/${YEAR}/${MONTH}/01_database.tar.gz
     fi
-    if [ $DAY_OF_MONTH -eq 28 ] ; then
+    if [ $DAY_OF_MONTH -eq 14 ] ; then
         cp `dirname $0`/tmp/weekly/${DAY_OF_WEEK}_files.tar.gz `dirname $0`/tmp/${YEAR}/${MONTH}/02_files.tar.gz
         cp `dirname $0`/tmp/weekly/${DAY_OF_WEEK}_database.tar.gz `dirname $0`/tmp/${YEAR}/${MONTH}/02_database.tar.gz
     fi
